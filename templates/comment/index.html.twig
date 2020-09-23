@@ -13,7 +13,7 @@
             </div>
             <div class='card-body'>
                 <h5 class='card-title'>{{ postMessage }}</h5>
-                <a href='#' class='btn btn-primary'>Go to the wall</a>
+                <a href='{{ path('wall', {'id': wallId}) }}' class='btn btn-primary'>Go to the wall</a>
             </div>
             <div class='card-footer text-muted justify-content-end'>
                 <p class='w-25 h-25 ml-auto p-0'>
@@ -33,7 +33,7 @@
         {% endfor %}
 
         <div class='card-body w-50 h-50 ml-auto mr-auto'>
-            <form method='post' action='#'>
+            <form method='post' action='{{ path('doComment', {  'targetId': targetId, 'postId': id}) }}'>
             <div class='card'>
                 <label for='exampleFormControlTextarea1'>What's on your mind?</label>
                 <textarea class='form-control' id='exampleFormControlTextarea1' name='message' rows='1'></textarea>
