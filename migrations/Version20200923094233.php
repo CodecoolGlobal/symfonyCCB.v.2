@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
+use Doctrine\Migrations\Exception\MigrationException;
 
 /**
  * Auto-generated Migration: Please modify to your needs!
@@ -17,15 +19,6 @@ final class Version20200923094233 extends AbstractMigration
         return '';
     }
 
-    public function up(Schema $schema) : void
-    {
-        // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE comment');
-        $this->addSql('DROP TABLE friend_status');
-        $this->addSql('DROP TABLE friends_list');
-        $this->addSql('DROP TABLE post');
-        $this->addSql('ALTER TABLE image CHANGE id id INT AUTO_INCREMENT NOT NULL, CHANGE path path VARCHAR(255) NOT NULL, ADD PRIMARY KEY (id)');
-    }
 
     public function down(Schema $schema) : void
     {
@@ -37,5 +30,10 @@ final class Version20200923094233 extends AbstractMigration
         $this->addSql('ALTER TABLE image MODIFY id INT NOT NULL');
         $this->addSql('ALTER TABLE image DROP PRIMARY KEY');
         $this->addSql('ALTER TABLE image CHANGE id id INT NOT NULL, CHANGE path path VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT \'no-user.jpg\' NOT NULL COLLATE `utf8mb4_0900_ai_ci`');
+    }
+
+    public function up(Schema $schema): void
+    {
+        // TODO: Implement up() method.
     }
 }
