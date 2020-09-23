@@ -19,7 +19,7 @@ class UserProfileType extends AbstractType
             ->add('last_name')
             ->add('country')
             ->add('city')
-            ->add('image',FileType::class)
+            ->add('image',FileType::class,["required"=>true,"mapped"=>false])
             ->add('hobby')
             ->add('birthdate',DateType::class,["years"=>range(1900,2020)])
             ->add('workplace')

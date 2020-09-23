@@ -23,22 +23,22 @@
         private $user_id;
 
         /**
-         * @ORM\Column(type="string", length=255, nullable=true)
+         * @ORM\Column(type="string", length=255)
          */
         private $first_name;
 
         /**
-         * @ORM\Column(type="string", length=255, nullable=true)
+         * @ORM\Column(type="string", length=255)
          */
         private $last_name;
 
         /**
-         * @ORM\Column(type="string", length=255, nullable=true)
+         * @ORM\Column(type="string", length=255)
          */
         private $country;
 
         /**
-         * @ORM\Column(type="string", length=255, nullable=true)
+         * @ORM\Column(type="string", length=255)
          */
         private $city;
 
@@ -46,14 +46,13 @@
          * @ORM\Column(type="integer",nullable=true)
          */
         private $image;
-
         /**
          * @ORM\Column(type="string", length=255, nullable=true)
          */
         private $hobby;
 
         /**
-         * @ORM\Column(type="date", nullable=true)
+         * @ORM\Column(type="date")
          */
         private $birthdate;
 
@@ -142,14 +141,14 @@
             return $this;
         }
 
-        public function getImageId(): ?int
+        public function getImage(): ?int
         {
-            return $this->image_id;
+            return $this->image;
         }
 
-        public function setImageId(int $image_id): self
+        public function setImage(int $image_id): self
         {
-            $this->image_id = $image_id;
+            $this->image= $image_id;
 
             return $this;
         }

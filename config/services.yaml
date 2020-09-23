@@ -31,4 +31,4 @@ services:
     # please note that last definitions always *replace* previous ones
     App\Services\FileUploader:
         arguments:
-            $targetDirectory: '%App/public/static/images'
+            $targetDirectory: 'static/images'
