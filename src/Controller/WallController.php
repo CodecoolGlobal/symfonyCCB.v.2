@@ -33,7 +33,7 @@ class WallController extends AbstractController
 
         return $this->render('wall/index.html.twig', [
             'controller_name' => 'WallController', "profileId" => $id, 'userId' =>$userId, 'profileDetails'=> $profileDetails, 'listDetails' => $listDetails,
-            'posts' => $postDetails
+            'posts' => $postDetails,
         ]);
     }
 

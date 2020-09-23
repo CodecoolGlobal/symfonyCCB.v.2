@@ -28,7 +28,7 @@
 
                     </ul>
                     <div class="card-body">
-                        <a href="#" class="card-link">Friends</a>
+                        <a href="{{ path('friends', {'wallId': profileId}) }}" class="card-link">Friends</a>
                         {%  if( userId == profileDetails.id) %}
                         | <a href="#" class="card-link">Edit Profile</a>
                         {% endif %}
