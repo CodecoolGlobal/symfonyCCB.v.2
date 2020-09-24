@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Entity\Post;
 use App\Entity\User;
 use App\Entity\UserProfile;
@@ -19,8 +20,8 @@ class WallController extends AbstractController
     {
 
         $userDetail = $this->getUser()->getId();
-        $userId = ($this->getDoctrine()
-            ->getRepository(UserProfile::class)->findOneBy(['user_id' => $userDetail ]))->getId();
+        $user = ($this->getDoctrine()
+            ->getRepository(UserProfile::class)->findOneBy(['user_id' => $userDetail ]));
 
         $profileDetails = $this->getDoctrine()
             ->getRepository(UserProfile::class)
@@ -31,9 +32,12 @@ class WallController extends AbstractController
 
         $listDetails =  $this->getDetailsForShow($profileDetails);
 
+        $image = $this->getDoctrine()->getRepository(Image::class)->findOneBy(["id"=>$user->getImage()])->getWebPath();
+
         return $this->render('wall/index.html.twig', [
-            'controller_name' => 'WallController', "profileId" => $id, 'userId' =>$userId, 'profileDetails'=> $profileDetails, 'listDetails' => $listDetails,
+            'controller_name' => 'WallController', "profileId" => $id, 'userId' =>$user->getId(), 'profileDetails'=> $profileDetails, 'listDetails' => $listDetails,
             'posts' => $postDetails,
+            'image'=>$image
         ]);
     }
 
