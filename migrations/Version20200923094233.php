@@ -20,10 +20,6 @@ final class Version20200923094233 extends AbstractMigration
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE comment');
-        $this->addSql('DROP TABLE friend_status');
-        $this->addSql('DROP TABLE friends_list');
-        $this->addSql('DROP TABLE post');
         $this->addSql('ALTER TABLE image CHANGE id id INT AUTO_INCREMENT NOT NULL, CHANGE path path VARCHAR(255) NOT NULL, ADD PRIMARY KEY (id)');
     }
 
