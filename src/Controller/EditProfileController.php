@@ -21,6 +21,7 @@ class EditProfileController extends AbstractController
      */
     public function edit(FileUploader $uploader, Request $request)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $userRepo = $this->getDoctrine()->getRepository(UserProfile::class);
         $imageRepo = $this->getDoctrine()->getRepository(Image::class);
         $em= $this->getDoctrine()->getManager();

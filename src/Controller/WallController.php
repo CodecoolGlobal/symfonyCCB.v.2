@@ -17,7 +17,7 @@ class WallController extends AbstractController
      */
     public function index($id)
     {
-
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $userDetail = $this->getUser()->getId();
         $userId = ($this->getDoctrine()
             ->getRepository(UserProfile::class)->findOneBy(['user_id' => $userDetail ]))->getId();
@@ -42,6 +42,7 @@ class WallController extends AbstractController
      */
     public function doPost($id,Request $request) : Response
     {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
         $userDetail = $this->getUser()->getId();
 
         $creatorProf= $this->getDoctrine()->getRepository(UserProfile::class)->findOneBy(['user_id' => $userDetail]);
