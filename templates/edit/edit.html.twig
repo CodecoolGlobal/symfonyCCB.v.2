@@ -7,7 +7,7 @@
         {% if userProfile %}
             <button id="btnFile" type="button">
                 {% if image == null %}
-                    <img src="../../assets/images/no-user.jpg" alt="no user image" height="250" width="238">
+                    <img src="../../public/static/images/no-user.jpg" alt="no user image" height="250" width="238">
                 {% else %}
                     <img src="../../public/static/images/{{ image.getPath() }}" alt="user profile image" height="250"
                          width="238">

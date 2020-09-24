@@ -11,6 +11,7 @@
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\FormEvent;
     use Symfony\Component\Form\FormEvents;
+    use Symfony\Component\Validator\Constraints\Date;
 
     class AddFields implements EventSubscriberInterface
     {
@@ -30,7 +31,7 @@
                 $form->add('first_name', TextType::class);
                 $form->add('last_name', TextType::class);
                 $form->add('last_name', TextType::class);
-                $form->add('birthdate',DateType::class);
+                $form->add('birthdate',DateType::class, ['years' => range(1920, (int) date('Y'))]);
                 $form->add('save',SubmitType::class,['label'=>"Save"]);
             } else {
                 $form->add('first_name', TextType::class,["disabled"=>true]);

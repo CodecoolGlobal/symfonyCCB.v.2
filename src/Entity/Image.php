@@ -38,7 +38,7 @@ class Image
     private $path;
 
     public function getWebPath(){
-        return "../../public/static/images/".$this->getPath();
+        return "static/images/".$this->getPath();
     }
 
     public function getId(): ?int

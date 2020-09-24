@@ -17,16 +17,9 @@ class FrontPageController extends AbstractController
         if($this->isGranted('IS_AUTHENTICATED_FULLY'))
         {
             $userId = $this->getUser()->getId();
-            $profileId = $this->getDoctrine()->getRepository(UserProfile::class)->findOneBy(['user_id' => $userId]);
+            $profileId = ($this->getDoctrine()->getRepository(UserProfile::class)->findOneBy(['user_id' => $userId]))->getId();
 
-
-
-            $this->get('twig')->addGlobal('navProfileId', $profileId);
-
-            return $this->render('front_page/index.html.twig', [
-                'controller_name' => 'FrontPageController',
-                'profileId' => $profileId ? $profileId->getId(): null
-            ]);
+            return $this->redirect("/wall/".$profileId, 301);
         }
 
         return $this->render('front_page/index.html.twig', [
