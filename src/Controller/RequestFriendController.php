@@ -6,6 +6,7 @@ use App\Entity\FriendsList;
 use App\Entity\User;
 use App\Entity\UserProfile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -44,6 +45,8 @@ class RequestFriendController extends AbstractController
 
     /**
      * @Route("/declinerequest/{requestId}", name="declinerequest")
+     * @param $requestId
+     * @return RedirectResponse
      */
     public function declineRequest($requestId)
     {
@@ -65,7 +68,7 @@ class RequestFriendController extends AbstractController
         foreach ($friendsIdBySenderId as $senderId) {
             {
 
-                    $friendRequestId = ($this->getDoctrine()->getRepository(FriendsList::class)->findOneBy(['sender_id'=> $senderId, 'receiver_id'=>110]))->getId();
+                    $friendRequestId = ($this->getDoctrine()->getRepository(FriendsList::class)->findOneBy(['sender_id'=> $senderId, 'receiver_id'=>$wallId]))->getId();
 
                     $bla = $this->getDoctrine()
                         ->getRepository(UserProfile::class)
