@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\FriendsList;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\This;
 
 /**
  * @method FriendsList|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,4 +48,34 @@ class FriendsListRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function selectAllFriendsBySenderId($wallId) : array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT receiver_id FROM friends_list f
+        WHERE f.status = 1 
+        AND f.sender_id = :wallId
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['wallId' => $wallId]);
+            return $stmt->fetchAll();
+
+    }
+    public function selectAllFriendsByReceiverId($wallId) : array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT sender_id FROM friends_list f
+        WHERE f.status = 1 
+        AND f.receiver_id = :wallId
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['wallId' => $wallId]);
+        return $stmt->fetchAll();
+
+    }
+
 }
