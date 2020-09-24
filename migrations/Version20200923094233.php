@@ -20,6 +20,13 @@ final class Version20200923094233 extends AbstractMigration
     }
 
 
+    public function up(Schema $schema) : void
+    {
+        // this up() migration is auto-generated, please modify it to your needs
+        $this->addSql('ALTER TABLE image CHANGE id id INT AUTO_INCREMENT NOT NULL, CHANGE path path VARCHAR(255) NOT NULL, ADD PRIMARY KEY (id)');
+    }
+
+
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
@@ -32,8 +39,5 @@ final class Version20200923094233 extends AbstractMigration
         $this->addSql('ALTER TABLE image CHANGE id id INT NOT NULL, CHANGE path path VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT \'no-user.jpg\' NOT NULL COLLATE `utf8mb4_0900_ai_ci`');
     }
 
-    public function up(Schema $schema): void
-    {
-        // TODO: Implement up() method.
-    }
+
 }

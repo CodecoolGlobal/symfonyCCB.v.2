@@ -32,3 +32,9 @@ services:
     App\Services\FileUploader:
         arguments:
             $targetDirectory: 'static/images'
+
+    app.image_type_extension:
+        class: App\Form\Extensions\ImageTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }
+

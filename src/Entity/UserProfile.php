@@ -76,6 +76,7 @@
          */
         private $deleted;
 
+
         public function getId(): ?int
         {
             return $this->id;
@@ -146,9 +147,9 @@
             return $this->image;
         }
 
-        public function setImage(int $image_id): self
+        public function setImage(int $image): self
         {
-            $this->image= $image_id;
+            $this->image= $image;
 
             return $this;
         }
