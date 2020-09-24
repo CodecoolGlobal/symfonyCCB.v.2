@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WallController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="pageContainer">
+    <div class="contentWrap">
+        <div class="row">
+            <div class="col-4 ml-3">
+                <div class="card" style="width: 18rem;">
+
+                <img src="#" alt="profile-Image" width="286" height="286">
+
+                    <div class="card-body">
+                        <h3 class="card-title"> {{ profileDetails.firstName}} {{ profileDetails.lastName }}</h3>
+
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% for key, value in listDetails %}
+                  <li class="list-group-item"> {{ key }} : {{ value}}</li>
+
+                        {% endfor %}
+
+                    </ul>
+                    <div class="card-body">
+                        <a href="{{ path('friends', {'wallId': profileId}) }}" class="card-link">Friends</a>
+                        {%  if( userId == profileDetails.id) %}
+                        | <a href="#" class="card-link">Edit Profile</a>
+                        <div class="card-body">
+                          <a href="{{ path('request_friend') }}" class="btn btn-warning">Friend Request</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-5 mt-5">
+                <form method="post" action="{{ path('doPost', {'id': profileDetails.Id}) }} " >
+                <div class="card">
+                    <label for="exampleFormControlTextarea1">What's on your mind?</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="1"></textarea>
+                    <label for="exampleFormControlFile1"></label>
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary mb-2 w-25 h-25 mr-auto ml-auto">Post</button>
+                </form>
+
+
+                <div class="post mt-3">
+                </div>
+                {% for post in posts %}
+                    <div class='card mb-3'>
+                        <div class='card-header'>
+                            By: {{ post.firstName }} {{ post.lastName }}
+                        </div>
+                        <div class='card-body'>
+
+                            <p class='card-text'> {{ post.message }} </p>
+                            <a href='{{ path('comment', {'targetId': post.creatorId  ,'postId': post.id }) }}' class='btn btn-primary btn-sm'>Go to comments</a>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
