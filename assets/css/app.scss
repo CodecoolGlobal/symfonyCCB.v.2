@@ -1,0 +1,27 @@
+@import "~bootstrap";
+@import "~font-awesome";
+
+@import "./layout/_footer.scss";
+@import "layout/wrapper";
+
+
+body {
+    font-family: Helvetica, serif !important;
+}
+
+a {
+    font-family: Helvetica, serif !important;
+    font-size: 1.1rem !important;
+}
+
+
+
+#navBrandText{
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    font-size: 2.5rem;
+    padding-left: .3em;
+    color: #23395d;
+}
+
+

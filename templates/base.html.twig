@@ -1,16 +1,105 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <body class="pageContainer">
+    <div class="contentWrap">
+        {% block nav %}
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="navbar-brand" href="/do-wall">
+                {% else %}
+                <a class="navbar-brand" href="http://127.0.0.1:8000">
+                    {% endif %}
+                    <img src="{{ asset('build/images/ccbLOGO.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
+                </a>
+                <form method="get" action="index.php" class="my-2 my-lg-0d-inline-block" style="width: 8rem">
+                    <input type="hidden" name="section" value="search" />
+                    <input type="hidden" name="subsection" value="friends" />
+                    <input id="navSearch" class="form-control mr-sm-2 fa"
+                           name="searchValue" placeholder="&#xf002;    Search" aria-label="Search" style="border-radius: 45px !important;">
+                </form>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                            <li class="nav-item dropdown col-sm-12">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    My Profile
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">Edit Profile</a>
+                                    <a class="dropdown-item" href="#">View Friends</a>
+                                    <a class="dropdown-item" href="#">View Posts</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="{{ path('app_logout') }}">Log out</a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="nav-item dropdown col-sm-12">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Sign In
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ path('app_login') }}">Sign In</a>
+                                    <a class="dropdown-item" href="{{ path('app_register') }}">Register</a>
+                                </div>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        {% endblock %}{% block body %}
+
+
+        {% endblock %}
+            </div>
+                {% block footer %}
+                    <div class="footer">
+                        <div class="footer__inner">
+                            <div class="footer__logo-container">
+                                <img src="{{ asset('build/images/ccbLOGO.png') }}" alt="logo" />
+                            </div>
+                            <div class="footer_third">
+                                <h1>Need Help?</h1>
+                                <a href="https://www.termsandconditionsgenerator.com/live.php?token=WLQdJqMDwNmo312mjqjqxuqCCahUE6wR"> Terms &amp; Conditions</a>
+                                <a href="https://www.privacypolicygenerator.info/live.php?token=zffuAlBlPSvNjOE3kYskUUurCQfG91Wj"> Privacy Policy</a>
+                            </div>
+                            <div class="footer_third">
+                                <h1>More</h1>
+                                <a href="#"> Link</a>
+                                <a href="#"> Link</a>
+                                <a href="#"> Link</a>
+                            </div>
+                            <div class="footer_third">
+                                <h1>Follow Us :</h1>
+                                <li><a href="https://www.facebook.com/ady.pogar" target="_blank"><i class="fa fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/stefan-d-837bb1193/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="https://github.com/orgs/CodecoolGlobal/teams/phpmonsters/repositories" target="_blank"><i class="fa fa-github"></i></a></li>
+                                <li><a href="mailto: florineless@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                                <span>
+                                &copy;<script>document.write(currentDate())</script> TEAM Maniacs | All rights reserved
+                            </span>
+                            </div>
+                        </div>
+                    </div >
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            <script src="https://unpkg.com/scrollreveal"></script>
+        {% endblock %}
     </body>
 </html>
