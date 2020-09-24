@@ -52,6 +52,7 @@ class EditProfileController extends AbstractController
                $em->persist($image);
                $em->flush();
            }
+           return $this->redirectToRoute('wall',['id'=>$userProfile->getId()]);
        }
        return $this->render('edit_profile/index.html.twig',["form"=>$form->createView()]);
     }
