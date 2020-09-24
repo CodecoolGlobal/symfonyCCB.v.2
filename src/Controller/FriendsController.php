@@ -23,8 +23,8 @@ class FriendsController extends AbstractController
 
     public function getAllFriends($wallId)
     {
-        $friendsIdBySenderId = $this->getDoctrine()->getRepository(FriendsList::class)->selectAllFriendsBySenderId($wallId);
-        $friendsIdByReceiverId = $this->getDoctrine()->getRepository(FriendsList::class)->selectAllFriendsByReceiverId($wallId);
+        $friendsIdBySenderId = $this->getDoctrine()->getRepository(FriendsList::class)->selectAllFriendsBySenderId($wallId, 1);
+        $friendsIdByReceiverId = $this->getDoctrine()->getRepository(FriendsList::class)->selectAllFriendsByReceiverId($wallId, 1);
         $allFriendsId = array_merge($friendsIdBySenderId, $friendsIdByReceiverId);
         $allFriendsProfile = [];
         foreach (array_merge($allFriendsId) as $arr) {

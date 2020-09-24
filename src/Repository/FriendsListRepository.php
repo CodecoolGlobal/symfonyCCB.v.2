@@ -49,31 +49,31 @@ class FriendsListRepository extends ServiceEntityRepository
     }
     */
 
-    public function selectAllFriendsBySenderId($wallId) : array
+    public function selectAllFriendsBySenderId($wallId, $statusId) : array
     {
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
         SELECT receiver_id FROM friends_list f
-        WHERE f.status = 1 
+        WHERE f.status = :statusId
         AND f.sender_id = :wallId
         ';
         $stmt = $conn->prepare($sql);
-        $stmt->execute(['wallId' => $wallId]);
+        $stmt->execute(['wallId' => $wallId, 'statusId' => $statusId]);
             return $stmt->fetchAll();
 
     }
-    public function selectAllFriendsByReceiverId($wallId) : array
+    public function selectAllFriendsByReceiverId($wallId, $statusId) : array
     {
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
         SELECT sender_id FROM friends_list f
-        WHERE f.status = 1 
+        WHERE f.status = :statusId 
         AND f.receiver_id = :wallId
         ';
         $stmt = $conn->prepare($sql);
-        $stmt->execute(['wallId' => $wallId]);
+        $stmt->execute(['wallId' => $wallId, 'statusId' => $statusId]);
         return $stmt->fetchAll();
 
     }
