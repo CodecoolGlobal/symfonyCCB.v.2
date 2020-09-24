@@ -8,6 +8,8 @@ use App\Entity\UserProfile;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+
 class RequestFriendController extends AbstractController
 {
     /**
@@ -26,23 +28,39 @@ class RequestFriendController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/acceptrequest/{requestId}", name="acceptrequest")
+     */
+    public function acceptRequest($requestId)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $friendRequest = $entityManager->getRepository(FriendsList::class)->findOneBy(['id' => $requestId]);
+
+        $friendRequest->setStatus(1);
+        $entityManager->flush();
+
+        return $this->redirect("/requestfriend", 301);
+    }
+
     public function getAllFriends($wallId)
     {
-        $friendsIdBySenderId = $this->getDoctrine()->getRepository(FriendsList::class)->selectAllFriendsBySenderId($wallId, 2);
-        $friendsIdByReceiverId = $this->getDoctrine()->getRepository(FriendsList::class)->selectAllFriendsByReceiverId($wallId, 2);
-        $allFriendsId = array_merge($friendsIdBySenderId, $friendsIdByReceiverId);
+        $friendsIdBySenderId = $this->getDoctrine()->getRepository(FriendsList::class)->selectAllFriendsByReceiverId($wallId, 2);
+
         $allFriendsProfile = [];
-        foreach (array_merge($allFriendsId) as $arr) {
+
+        foreach ($friendsIdBySenderId as $senderId) {
             {
 
-                foreach ($arr as $id) {
+                    $friendRequestId = ($this->getDoctrine()->getRepository(FriendsList::class)->findOneBy(['sender_id'=> $senderId, 'receiver_id'=>110]))->getId();
 
                     $bla = $this->getDoctrine()
                         ->getRepository(UserProfile::class)
-                        ->findOneBy(['id' => $id]);
+                        ->findOneBy(['id' => $senderId]);
+                    $bla->requestId = $friendRequestId;
+
                     array_push($allFriendsProfile, $bla);
 
-                }
+
             }
         }
 

@@ -20,12 +20,12 @@ class FriendsList
     /**
      * @ORM\Column(type="integer")
      */
-    private $sneder_id;
+    private $sender_id;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $reciver_id;
+    private $receiver_id;
 
     /**
      * @ORM\Column(type="integer")
@@ -42,26 +42,26 @@ class FriendsList
         return $this->id;
     }
 
-    public function getSnederId(): ?int
+    public function getSenderId(): ?int
     {
-        return $this->sneder_id;
+        return $this->sender_id;
     }
 
-    public function setSnederId(int $sneder_id): self
+    public function setSenderId(int $sender_id): self
     {
-        $this->sneder_id = $sneder_id;
+        $this->sender_id = $sender_id;
 
         return $this;
     }
 
-    public function getReciverId(): ?int
+    public function getReceiverId(): ?int
     {
-        return $this->reciver_id;
+        return $this->receiver_id;
     }
 
-    public function setReciverId(int $reciver_id): self
+    public function setReceiverId(int $receiver_id): self
     {
-        $this->reciver_id = $reciver_id;
+        $this->receiver_id = $receiver_id;
 
         return $this;
     }

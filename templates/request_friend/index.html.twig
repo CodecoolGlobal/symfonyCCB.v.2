@@ -15,8 +15,11 @@
                 <h5 class='card-title'> {{ request.firstName }} {{ request.LastName }}</h5>
 
                 <a href='{{ path('wall', {'id': request.id}) }}' class='btn btn-primary'>View the profile</a>
-                <a href='#' class='btn btn-warning'>Accept </a>
 
+            </div>
+            <div class='card-body'>
+                <a href='{{ path('acceptrequest', {'requestId': request.requestId })  }}' class='btn btn-success'>Accept </a>
+                <a href='' class='btn btn-danger'>Decline </a>
             </div>
         </div>
 
