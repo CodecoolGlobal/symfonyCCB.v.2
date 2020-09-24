@@ -2,12 +2,22 @@
   "entrypoints": {
     "app": {
       "js": [
+        "/build/vendors~app~frontPage.js",
+        "/build/vendors~app.js",
         "/build/app.js"
+      ],
+      "css": [
+        "/build/app.css"
       ]
     },
     "frontPage": {
       "js": [
+        "/build/vendors~app~frontPage.js",
+        "/build/vendors~frontPage.js",
         "/build/frontPage.js"
+      ],
+      "css": [
+        "/build/frontPage.css"
       ]
     }
   }
