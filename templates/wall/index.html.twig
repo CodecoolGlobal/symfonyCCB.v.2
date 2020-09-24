@@ -31,6 +31,9 @@
                         <a href="{{ path('friends', {'wallId': profileId}) }}" class="card-link">Friends</a>
                         {%  if( userId == profileDetails.id) %}
                         | <a href="#" class="card-link">Edit Profile</a>
+                        <div class="card-body">
+                          <a href="{{ path('request_friend') }}" class="btn btn-warning">Friend Request</a>
+                        </div>
                         {% endif %}
                     </div>
                 </div>
