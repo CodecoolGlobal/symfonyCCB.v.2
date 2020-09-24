@@ -42,6 +42,20 @@ class RequestFriendController extends AbstractController
         return $this->redirect("/requestfriend", 301);
     }
 
+    /**
+     * @Route("/declinerequest/{requestId}", name="declinerequest")
+     */
+    public function declineRequest($requestId)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $friendRequest = $entityManager->getRepository(FriendsList::class)->findOneBy(['id' => $requestId]);
+
+        $friendRequest->setStatus(4);
+        $entityManager->flush();
+
+        return $this->redirect("/requestfriend", 301);
+    }
+
     public function getAllFriends($wallId)
     {
         $friendsIdBySenderId = $this->getDoctrine()->getRepository(FriendsList::class)->selectAllFriendsByReceiverId($wallId, 2);

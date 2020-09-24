@@ -19,7 +19,7 @@
             </div>
             <div class='card-body'>
                 <a href='{{ path('acceptrequest', {'requestId': request.requestId })  }}' class='btn btn-success'>Accept </a>
-                <a href='' class='btn btn-danger'>Decline </a>
+                <a href='{{ path('declinerequest', {'requestId':  request.requestId}) }}' class='btn btn-danger'>Decline </a>
             </div>
         </div>
 
