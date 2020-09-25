@@ -21,9 +21,7 @@
                         {% endif %}
                         <img src="{{ asset('build/images/ccbLOGO.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
                     </a>
-                    <form method="get" action="index.php" class="my-2 my-lg-0d-inline-block" style="width: 8rem">
-                        <input type="hidden" name="section" value="search" />
-                        <input type="hidden" name="subsection" value="friends" />
+                    <form method="get" action="{{ path('search_friends') }}" class="my-2 my-lg-0d-inline-block" style="width: 8rem">
                         <input id="navSearch" class="form-control mr-sm-2 fa"
                                name="searchValue" placeholder="&#xf002;    Search" aria-label="Search" style="border-radius: 45px !important;">
                     </form>

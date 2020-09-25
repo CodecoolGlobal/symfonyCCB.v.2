@@ -36,6 +36,19 @@ class UserProfileRepository extends ServiceEntityRepository
     }
     */
 
+    public function searchFriends($searchValue)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT * FROM user_profile up
+                LEFT JOIN image i
+                ON up.image = i.user_profile_id
+                WHERE first_name LIKE :var OR last_name LIKE :var";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(array('var' => '%'.$searchValue.'%'));
+        return $stmt->fetchAllAssociative();
+    }
+
     /*
     public function findOneBySomeField($value): ?UserProfile
     {

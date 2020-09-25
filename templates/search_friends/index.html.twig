@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search Friends{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        {% for friend in friends %}
+            <div class="card mr-3" style="width: 14rem; display: inline-block">
+                {% if friend.path is same as (null) %}
+                    <img src="{{ asset('static/images/no-user.jpg') }}" class="card-img-top" alt="" >
+                {% else %}
+                    <img src="{{ asset('static/images/') }}{{ friend.path }}" class="card-img-top" alt="" >
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ friend.first_name }} {{ friend.last_name }}</h5>
+                    <p class="card-text">From: {{ friend.city}}, {{ friend.country}} <br>
+                        Birthday: {{ friend.birthdate }}
+                    </p>
+                    <a href="{{ path('wall', {'id': friend.id }) }}" name="submit" class="btn  btn-primary" >Add</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

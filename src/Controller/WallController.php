@@ -23,6 +23,7 @@ class WallController extends AbstractController
         $user = ($this->getDoctrine()
             ->getRepository(UserProfile::class)->findOneBy(['user_id' => $userDetail ]));
 
+
         $profileDetails = $this->getDoctrine()
             ->getRepository(UserProfile::class)
             ->findOneBy(['id' => $id]);
