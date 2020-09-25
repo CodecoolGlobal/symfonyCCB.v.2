@@ -22,7 +22,7 @@
 
                 </ul>
                 <div class="card-body">
-                    <a class="btn btn-primary" "href="{{ path('friends', {'wallId': profileId}) }}" class="card-link">Friends</a>
+                    <a class="btn btn-primary card-link" href="{{ path('friends', {'wallId': profileId}) }}">Friends</a>
                     {% if( userId == profileDetails.id) %}
                         | <a href="{{ path('edit_profile') }}" class="card-link">Edit Profile</a>
                         <div class="card-body">
@@ -34,6 +34,7 @@
                         {% elseif(relation == 2) %}
                             <a class="btn btn-warning" href="{{ path('app_delete_friend',{'wallId':profileDetails.id,'senderId':userId,'relationId':relationId}) }}">Cancel</a>
                         {% elseif(relation == 3 or relation == 4) %}
+                            {{ relationId }}
                             <a class="btn btn-success" href="{{ path('app_add_friend',{'wallId':profileDetails.id,'senderId':userId,'relationId':relationId}) }}">Add friend</a>
                         {% endif %}
                     {% endif %}
