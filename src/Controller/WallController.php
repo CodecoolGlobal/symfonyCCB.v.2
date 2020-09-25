@@ -48,7 +48,6 @@ class WallController extends AbstractController
         if($user->getId() === $id){
             $image = $this->getDoctrine()->getRepository(Image::class)->findOneBy(["id"=>$user->getImage()])->getWebPath();
         } else {
-//            dd($profileDetails);
             $image = $this->getDoctrine()->getRepository(Image::class)->findOneBy(["id"=>$profileDetails->getImage()])->getWebPath();
         }
 

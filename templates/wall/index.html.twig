@@ -22,11 +22,11 @@
 
                 </ul>
                 <div class="card-body">
-                    <a class="btn btn-primary card-link" href="{{ path('friends', {'wallId': profileId}) }}">Friends</a>
+                    <a style="display: none;" class="btn btn-primary card-link" href="{{ path('friends', {'wallId': profileId}) }}">Friends</a>
                     {% if( userId == profileDetails.id) %}
                         | <a href="{{ path('edit_profile') }}" class="card-link">Edit Profile</a>
                         <div class="card-body">
-                            <a href="{{ path('request_friend') }}" class="btn btn-warning">Friend Request</a>
+                            <a style="display: none;" href="{{ path('request_friend') }}" class="btn btn-warning">Friend Request</a>
                         </div>
                     {% else %}
                         {% if(relation == 1) %}
