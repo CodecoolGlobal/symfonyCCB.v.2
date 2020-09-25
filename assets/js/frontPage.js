@@ -5,7 +5,7 @@ import smooth from "./components/smooth_scroll";
 
 
 
-$.document.ready(function (){
+$(document).ready(function (){
     smooth();
 });
 

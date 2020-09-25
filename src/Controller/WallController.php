@@ -32,7 +32,7 @@ class WallController extends AbstractController
         $dbRelation = $this->getDoctrine()->getRepository(FriendsList::class)->selectRelation($user->getId(),$id);
         $relation = 3;
         $relationId = null;
-        if($profileDetails->getId() != $user->getId()){
+        if($profileDetails->getId() !== $user->getId()){
             if($dbRelation){
                 $relation = $dbRelation['status'];
                 $relationId = $dbRelation['id'];

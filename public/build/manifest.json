@@ -1,9 +1,12 @@
 {
   "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
+  "build/card.css": "/build/card.css",
+  "build/card.js": "/build/card.js",
   "build/frontPage.css": "/build/frontPage.css",
   "build/frontPage.js": "/build/frontPage.js",
   "build/vendors~app.js": "/build/vendors~app.js",
+  "build/vendors~app~card~frontPage.js": "/build/vendors~app~card~frontPage.js",
   "build/vendors~app~frontPage.js": "/build/vendors~app~frontPage.js",
   "build/vendors~frontPage.js": "/build/vendors~frontPage.js",
   "build/fonts/fontawesome-webfont.ttf": "/build/fonts/fontawesome-webfont.1e59d233.ttf",

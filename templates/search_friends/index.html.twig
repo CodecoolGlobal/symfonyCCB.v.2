@@ -18,7 +18,7 @@
                     <p class="card-text">From: {{ friend.city}}, {{ friend.country}} <br>
                         Birthday: {{ friend.birthdate }}
                     </p>
-                    <a href="{{ path('wall', {'id': friend.id }) }}" name="submit" class="btn  btn-primary" >Add</a>
+                    <a href="{{ path('wall', {'id': friend.id }) }}" name="submit" class="btn  btn-primary" >Visit {{ friend.first_name }}</a>
                 </div>
             </div>
         {% endfor %}
