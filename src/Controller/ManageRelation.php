@@ -15,10 +15,11 @@
          * @Route("/addFriend/{wallId}/{senderId}/{relationId}", name="app_add_friend")
          * @param $wallId
          * @param $senderId
+         * @param $relationId
          * @return RedirectResponse
          */
         public function addFriend($wallId,$senderId,$relationId){
-            if($relationId){
+            if(!$relationId == null){
                 $friendList = $this->getDoctrine()->getRepository(FriendsList::class)->find(['id'=>$relationId]);
                 $friendList->setStatus(2);
                 $em = $this->getDoctrine()->getManager();

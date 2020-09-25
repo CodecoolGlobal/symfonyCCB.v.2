@@ -31,7 +31,7 @@ class WallController extends AbstractController
 
         $dbRelation = $this->getDoctrine()->getRepository(FriendsList::class)->selectRelation($user->getId(),$id);
         $relation = 3;
-        $relationId = null;
+        $relationId = ' ';
         if($profileDetails->getId() != $user->getId()){
             if($dbRelation){
                 $relation = $dbRelation['status'];
@@ -45,7 +45,12 @@ class WallController extends AbstractController
 
         $listDetails =  $this->getDetailsForShow($profileDetails);
 
-        $image = $this->getDoctrine()->getRepository(Image::class)->findOneBy(["id"=>$user->getImage()])->getWebPath();
+        if($user->getId() === $id){
+            $image = $this->getDoctrine()->getRepository(Image::class)->findOneBy(["id"=>$user->getImage()])->getWebPath();
+        } else {
+//            dd($profileDetails);
+            $image = $this->getDoctrine()->getRepository(Image::class)->findOneBy(["id"=>$profileDetails->getImage()])->getWebPath();
+        }
 
         return $this->render('wall/index.html.twig', [
             'controller_name' => 'WallController', "profileId" => $id, 'userId' =>$user->getId(), 'profileDetails'=> $profileDetails, 'listDetails' => $listDetails,
