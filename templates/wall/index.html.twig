@@ -1,64 +1,73 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Hello - {{ profileDetails.firstName}} {{ profileDetails.lastName }} !{% endblock %}
+{% block title %} Hello - {{ profileDetails.firstName }} {{ profileDetails.lastName }} !{% endblock %}
 
 {% block body %}
 
-        <div class="row">
-            <div class="col-4 ml-3">
-                <div class="card" style="width: 18rem;">
+    <div class="row">
+        <div class="col-4 ml-3">
+            <div class="card" style="width: 18rem;">
 
                 <img src="{{ asset(image) }}" alt="profile-Image" width="286" height="286">
 
-                    <div class="card-body">
-                        <h3 class="card-title"> {{ profileDetails.firstName}} {{ profileDetails.lastName }}</h3>
+                <div class="card-body">
+                    <h3 class="card-title"> {{ profileDetails.firstName }} {{ profileDetails.lastName }}</h3>
 
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        {% for key, value in listDetails %}
-                  <li class="list-group-item"> {{ key }} : {{ value}}</li>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for key, value in listDetails %}
+                        <li class="list-group-item"> {{ key }} : {{ value }}</li>
 
-                        {% endfor %}
+                    {% endfor %}
 
-                    </ul>
-                    <div class="card-body">
-                        <a href="{{ path('friends', {'wallId': profileId}) }}" class="card-link">Friends</a>
-                        {%  if( userId == profileDetails.id) %}
+                </ul>
+                <div class="card-body">
+                    <a class="btn btn-primary" "href="{{ path('friends', {'wallId': profileId}) }}" class="card-link">Friends</a>
+                    {% if( userId == profileDetails.id) %}
                         | <a href="{{ path('edit_profile') }}" class="card-link">Edit Profile</a>
                         <div class="card-body">
-                          <a href="{{ path('request_friend') }}" class="btn btn-warning">Friend Request</a>
+                            <a href="{{ path('request_friend') }}" class="btn btn-warning">Friend Request</a>
                         </div>
+                    {% else %}
+                        {% if(relation == 1) %}
+                            <a class="btn btn-danger" href="{{ path('app_delete_friend',{'wallId':profileDetails.id,'senderId':userId,'relationId':relationId}) }}">Delete</a>
+                        {% elseif(relation == 2) %}
+                            <a class="btn btn-warning" href="{{ path('app_delete_friend',{'wallId':profileDetails.id,'senderId':userId,'relationId':relationId}) }}">Cancel</a>
+                        {% elseif(relation == 3 or relation == 4) %}
+                            <a class="btn btn-success" href="{{ path('app_add_friend',{'wallId':profileDetails.id,'senderId':userId,'relationId':relationId}) }}">Add friend</a>
                         {% endif %}
-                    </div>
+                    {% endif %}
                 </div>
-
             </div>
-            <div class="col-5 mt-5">
-                <form method="post" action="{{ path('doPost', {'id': profileDetails.Id}) }} " >
+
+        </div>
+        <div class="col-5 mt-5">
+            <form method="post" action="{{ path('doPost', {'id': profileDetails.Id}) }} ">
                 <div class="card">
                     <label for="exampleFormControlTextarea1">What's on your mind?</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="1"></textarea>
                     <label for="exampleFormControlFile1"></label>
                 </div>
                 <button type="submit" class="btn btn-sm btn-primary mb-2 w-25 h-25 mr-auto ml-auto">Post</button>
-                </form>
+            </form>
 
 
-                <div class="post mt-3">
-                </div>
-                {% for post in posts %}
-                    <div class='card mb-3'>
-                        <div class='card-header'>
-                            By: {{ post.firstName }} {{ post.lastName }}
-                        </div>
-                        <div class='card-body'>
-
-                            <p class='card-text'> {{ post.message }} </p>
-                            <a href='{{ path('comment', {'targetId': post.creatorId  ,'postId': post.id }) }}' class='btn btn-primary btn-sm'>Go to comments</a>
-                        </div>
-                    </div>
-                {% endfor %}
+            <div class="post mt-3">
             </div>
+            {% for post in posts %}
+                <div class='card mb-3'>
+                    <div class='card-header'>
+                        By: {{ post.firstName }} {{ post.lastName }}
+                    </div>
+                    <div class='card-body'>
+
+                        <p class='card-text'> {{ post.message }} </p>
+                        <a href='{{ path('comment', {'targetId': post.creatorId  ,'postId': post.id }) }}'
+                           class='btn btn-primary btn-sm'>Go to comments</a>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
+    </div>
 
 {% endblock %}

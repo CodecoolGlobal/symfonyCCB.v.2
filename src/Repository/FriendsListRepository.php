@@ -78,4 +78,15 @@ class FriendsListRepository extends ServiceEntityRepository
 
     }
 
+    public function selectRelation($wallId,$loggedId){
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT * FROM 
+              friends_list f where (f.sender_id = :loggedId and f.receiver_id=:wallId) or 
+                                   (f.sender_id=:wallId and f.receiver_id=:loggedId);';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['wallId'=>$wallId,'loggedId'=>$loggedId]);
+        return $stmt->fetch();
+    }
+
 }

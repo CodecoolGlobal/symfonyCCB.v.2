@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\FriendsList;
 use App\Entity\Image;
 use App\Entity\Post;
 use App\Entity\User;
@@ -23,9 +24,21 @@ class WallController extends AbstractController
         $user = ($this->getDoctrine()
             ->getRepository(UserProfile::class)->findOneBy(['user_id' => $userDetail ]));
 
+
         $profileDetails = $this->getDoctrine()
             ->getRepository(UserProfile::class)
             ->findOneBy(['id' => $id]);
+
+        $dbRelation = $this->getDoctrine()->getRepository(FriendsList::class)->selectRelation($user->getId(),$id);
+        $relation = 3;
+        $relationId = null;
+        if($profileDetails->getId() != $user->getId()){
+            if($dbRelation){
+                $relation = $dbRelation['status'];
+                $relationId = $dbRelation['id'];
+            }
+        }
+
         $posts = $this->getDoctrine()->getRepository(Post::class)->findBy(['target_profile_id'=> $id]);
         $postDetails = $this->getNecessaryInfoByPosts($posts);
 
@@ -37,7 +50,9 @@ class WallController extends AbstractController
         return $this->render('wall/index.html.twig', [
             'controller_name' => 'WallController', "profileId" => $id, 'userId' =>$user->getId(), 'profileDetails'=> $profileDetails, 'listDetails' => $listDetails,
             'posts' => $postDetails,
-            'image'=>$image
+            'image'=>$image,
+            'relation'=>$relation,
+            'relationId'=>$relationId
         ]);
     }
 
