@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +26,11 @@ class SearchFriendsController extends AbstractController
             ->getRepository('App:UserProfile');
 
         $friends = $categoryRepository->searchFriends($searchName);
+        for($i=0;$i<count($friends);$i++){
+            $imagePath = $this->getDoctrine()->getRepository(Image::class)->findOneBy(['id'=>$friends[$i]['image']])->getPath();
+           $friends[$i]['path'] = $imagePath;
+        }
+
 
 
         return $this->render('search_friends/index.html.twig', [

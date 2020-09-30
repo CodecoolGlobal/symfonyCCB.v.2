@@ -91,16 +91,6 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
 {#                <div class="card-body">#}
 {#                    <h3 class="card-title"> {{ profileDetails.firstName }} {{ profileDetails.lastName }}</h3>#}
 
@@ -134,26 +124,45 @@
 {#        </div>#}
 
 
-        <div class="container">
-                {% for post in posts %}
-                    <div class="card mt-3 mb-3">
-                        <div class="card-header">
-
-                            <a href='{{ path('comment', {'targetId': post.creatorId  ,'postId': post.id }) }}'
-                                                        class='btn btn-outline-info btn-sm'>Go to comments</a>
 
 
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                                <p>{{ post.message }}</p>
-                                <footer class="blockquote-footer">{{ post.firstName }} {{ post.lastName }} </footer>
-                            </blockquote>
-                        </div>
+
+    <div class="card-body">
+        <a class="btn btn-primary card-link" href="{{ path('friends', {'wallId': profileId}) }}">Friends</a>
+        {% if( userId == profileDetails.id) %}
+            | <a href="{{ path('edit_profile') }}" class="btn btn-outline-secondary">Edit Profile</a>
+            <div class="card-body">
+                <a href="{{ path('request_friend') }}" class="btn btn-warning">Friend Request</a>
+            </div>
+        {% else %}
+            {% if(relation == 1) %}
+                <a class="btn btn-danger" href="{{ path('app_delete_friend',{'wallId':profileDetails.id,'senderId':userId,'relationId':relationId}) }}">Delete</a>
+            {% elseif(relation == 2) %}
+                <a class="btn btn-warning" href="{{ path('app_delete_friend',{'wallId':profileDetails.id,'senderId':userId,'relationId':relationId}) }}">Cancel</a>
+            {% elseif(relation == 3 or relation == 4) %}
+                <a class="btn btn-success" href="{{ path('app_add_friend',{'wallId':profileDetails.id,'senderId':userId,'relationId':relationId}) }}">Add friend</a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+
+
+    <div class="container">
+            {% for post in posts %}
+                <div class="card mt-3 mb-3">
+                    <div class="card-header">
+                        <a href='{{ path('comment', {'targetId': post.creatorId  ,'postId': post.id }) }}'
+                                                    class='btn btn-outline-info btn-sm'>Go to comments</a>
                     </div>
-                {% endfor %}
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>{{ post.message }}</p>
+                        <footer class="blockquote-footer">{{ post.firstName }} {{ post.lastName }} </footer>
+                    </blockquote>
+                </div>
+            {% endfor %}
 
-            <form method="post" action="{{ path('doPost', {'id': profileDetails.Id}) }} ">
+            <form method="post" action="{{ path('doPost', {'id': profileDetails.Id}) }} " class="m-3">
                 <div class="card">
                     <label for="exampleFormControlTextarea1">What's on your mind?</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="1"></textarea>
@@ -161,10 +170,8 @@
                 </div>
                 <button type="submit" class="btn btn-block btn-sm btn-primary">Post</button>
             </form>
-
         </div>
-
-
+    </div>
 
 {% endblock %}
 
