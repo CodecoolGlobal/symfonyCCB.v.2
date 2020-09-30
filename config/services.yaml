@@ -29,3 +29,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Services\FileUploader:
+        arguments:
+            $targetDirectory: 'static/images'
+
+    app.image_type_extension:
+        class: App\Form\Extensions\ImageTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }
+

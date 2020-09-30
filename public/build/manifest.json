@@ -1,0 +1,23 @@
+{
+  "build/app.css": "/build/app.css",
+  "build/app.js": "/build/app.js",
+  "build/card.css": "/build/card.css",
+  "build/card.js": "/build/card.js",
+  "build/frontPage.css": "/build/frontPage.css",
+  "build/frontPage.js": "/build/frontPage.js",
+  "build/vendors~app.js": "/build/vendors~app.js",
+  "build/vendors~app~card~frontPage.js": "/build/vendors~app~card~frontPage.js",
+  "build/vendors~app~frontPage.js": "/build/vendors~app~frontPage.js",
+  "build/vendors~frontPage.js": "/build/vendors~frontPage.js",
+  "build/fonts/fontawesome-webfont.ttf": "/build/fonts/fontawesome-webfont.1e59d233.ttf",
+  "build/fonts/fontawesome-webfont.woff2": "/build/fonts/fontawesome-webfont.20fd1704.woff2",
+  "build/fonts/fontawesome-webfont.eot": "/build/fonts/fontawesome-webfont.8b43027f.eot",
+  "build/fonts/fontawesome-webfont.woff": "/build/fonts/fontawesome-webfont.f691f37e.woff",
+  "build/images/ccbLOGO.png": "/build/images/ccbLOGO.70be424e.png",
+  "build/images/favicon.ico": "/build/images/favicon.9c0927c4.ico",
+  "build/images/fontawesome-webfont.c1e38fd9.svg": "/build/images/fontawesome-webfont.c1e38fd9.c1e38fd9.svg",
+  "build/images/fontawesome-webfont.svg": "/build/images/fontawesome-webfont.c1e38fd9.svg",
+  "build/images/frontPage1.jpg": "/build/images/frontPage1.a4ac687e.jpg",
+  "build/images/frontPage2.jpg": "/build/images/frontPage2.4ffbcb37.jpg",
+  "build/images/frontpage3.jpg": "/build/images/frontpage3.610d0379.jpg"
+}
