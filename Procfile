@@ -1,1 +1,1 @@
-web: heroku-php-apache2 -C rewrite.conf public/index.php
+web: heroku-php-apache2 public/
